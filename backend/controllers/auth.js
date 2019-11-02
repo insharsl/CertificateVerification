@@ -1,6 +1,6 @@
 require('dotenv').config();
-const imageThumbnail = require('image-thumbnail');
-const {imageHash} = require('image-hash');
+//const imageThumbnail = require('image-thumbnail');
+//const {imageHash} = require('image-hash');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const database = require("../utils");
