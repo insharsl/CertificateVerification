@@ -151,7 +151,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" id="logout" >Logout</a>
             </div>
         </div>
     </div>
@@ -246,8 +246,20 @@
 
 <script>
 
+
+    $(document).on('click', '#logout', function () {
+        localStorage.removeItem("user_id");
+        window.location.href = './login.html';
+    });
+
     let uniAdmin = "";
     $(document).ready(function () {
+
+        if (localStorage.user_id === undefined) {
+            window.location.href = './login.html';
+        }
+
+
         let UniversityAdmins = '';
         $.ajax({
             type: 'GET',
