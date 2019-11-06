@@ -1,6 +1,6 @@
 require('dotenv').config();
-//const imageThumbnail = require('image-thumbnail');
-//const {imageHash} = require('image-hash');
+const imageThumbnail = require('image-thumbnail');
+const {imageHash} = require('image-hash');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const database = require("../utils");
@@ -355,7 +355,8 @@ exports.getStudents = async (req, res, next) => {
     try {
         console.log("Get Admins API called");
         console.log(req.body);
-        const query = "Select * from student order by id desc";
+        let userid = req.body.userid;
+        const query = "Select * from student where user_id = '" + userid + "' order by id desc";
         database.executeQuery(res, "", query);
     } catch (e) {
         const response = {'status_code': 500, 'error': "Internal Server Error"};
