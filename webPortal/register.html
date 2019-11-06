@@ -60,6 +60,19 @@
 <script src="./config.js"></script>
 
 <script>
+
+    $(document).ready(function (e) {
+        if (localStorage.user_id === undefined) {
+            window.location.href = './login.html';
+        }
+    });
+
+    $(document).on('click', '#logout', function () {
+        localStorage.removeItem("user_id");
+        window.location.href = './login.html';
+    });
+
+
     $("form.Form").on('submit', function (e) {
         e.preventDefault();
         const inputEmailValue = $("#inputEmail").val();
