@@ -356,7 +356,8 @@ exports.getStudents = async (req, res, next) => {
         console.log("Get Admins API called");
         console.log(req.body);
         let userid = req.body.userid;
-        const query = "Select * from student where user_id = '" + userid + "' order by id desc";
+        //const query = "Select * from student where user_id = '" + userid + "' order by id desc";
+        const query = "Select * from student order by id desc";
         database.executeQuery(res, "", query);
     } catch (e) {
         const response = {'status_code': 500, 'error': "Internal Server Error"};
