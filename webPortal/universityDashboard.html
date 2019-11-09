@@ -193,7 +193,7 @@
     let StudentInfo = '';
     $.ajax({
         type: 'GET',
-        url: BASE_URL + 'api/auth/student',
+        url: BASE_URL + 'api/auth/student?university_id='+localStorage.user_id +'',
         cache: false,
         complete: function (data, status) {
             console.log(data);
