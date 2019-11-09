@@ -328,10 +328,11 @@ exports.createStudent = async (req, res, next) => {
         let start_date = req.body.start_date;
         let end_date = req.body.end_date;
         let nic = req.body.nic;
+        let university_id = req.body.university_id;
         let certificate = "certificates/" + req.file.filename;
 
-        let query = "insert into student (firstname, lastname, created_at , university_name, email, student_number,start_date, end_date, NIC, certificate, certificate_hash) " +
-            "values ('" + firstName + "','" + lastName + "','" + createdAt + "','" + universityName + "','"+email+"','" + studentNumber + "','" + start_date + "','" + end_date + "','" + nic + "','" + certificate + "',";
+        let query = "insert into student (firstname, lastname, created_at , university_name, email, student_number,start_date, end_date, NIC, university_id, certificate, certificate_hash) " +
+            "values ('" + firstName + "','" + lastName + "','" + createdAt + "','" + universityName + "','"+email+"','" + studentNumber + "','" + start_date + "','" + end_date + "','" + nic + "','" + university_id + "','" + certificate + "',";
 
         let replacements = {
             stuNumber: studentNumber,
@@ -356,9 +357,9 @@ exports.getStudents = async (req, res, next) => {
     try {
         console.log("Get Admins API called");
         console.log(req.body);
-        let userid = req.body.userid;
+        let university_id = req.query.university_id;
         //const query = "Select * from student where user_id = '" + userid + "' order by id desc";
-        const query = "Select * from student order by id desc";
+        const query = "Select * from student WHERE university_id = '" + university_id + "' order by id desc";
         database.executeQuery(res, "", query);
     } catch (e) {
         const response = {'status_code': 500, 'error': "Internal Server Error"};

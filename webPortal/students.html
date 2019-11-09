@@ -223,6 +223,7 @@
                         <label>NIC</label>
                         <input type="text" class="form-control my-2" id="nic" placeholder="NIC">
                     </div>
+                    <input type="hidden" readonly class="form-control my-2" id="uni_id" placeholder="uni_id" />
                     <div class="form-group">
                         <label for="certificate">Certificate</label>
                         <input type="file" class="form-control" id="certificate">
@@ -268,6 +269,8 @@
 
     $(document).ready(function (e) {
 
+        $('.uni_id').val(localStorage.user_id );
+
         if (localStorage.user_id === undefined) {
             window.location.href = './login.html';
         }
@@ -275,7 +278,7 @@
         let StudentInfo = '';
         $.ajax({
             type: 'GET',
-            url: BASE_URL + 'api/auth/student',
+            url: BASE_URL + 'api/auth/student?university_id='+localStorage.user_id +'',
             data: {
                 userid: localStorage.user_id
             },
@@ -297,6 +300,7 @@
 
                         StudentInfo += "</tr>"
                     }
+
                 } else {
                     alert('Error Occured. Check Node logs.');
                 }
@@ -316,6 +320,7 @@
             formData.append("start_date", $("input#startdate").val());
             formData.append("end_date", $("input#enddate").val());
             formData.append("nic", $("input#nic").val());
+            formData.append("university_id", $("input#uni_id").val());
             formData.append("certificate", $('input[type=file]')[0].files[0], $('input[type=file]')[0].files[0].name);
 
             $.ajax({
