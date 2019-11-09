@@ -269,9 +269,9 @@
 
     $(document).ready(function (e) {
 
-        $('.uni_id').val(localStorage.user_id );
-        alert(localStorage.user_id);
-        alert($("input#uni_id").val());
+        //$('.uni_id').val(localStorage.user_id );
+        //alert(localStorage.user_id);
+        //alert($("input#uni_id").val());
         if (localStorage.user_id === undefined) {
             window.location.href = './login.html';
         }
@@ -321,7 +321,7 @@
             formData.append("start_date", $("input#startdate").val());
             formData.append("end_date", $("input#enddate").val());
             formData.append("nic", $("input#nic").val());
-            formData.append("university_id", $("input#uni_id").val());
+            formData.append("university_id", localStorage.user_id);
             formData.append("certificate", $('input[type=file]')[0].files[0], $('input[type=file]')[0].files[0].name);
 
             $.ajax({
