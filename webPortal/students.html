@@ -270,7 +270,8 @@
     $(document).ready(function (e) {
 
         $('.uni_id').val(localStorage.user_id );
-
+        alert(localStorage.user_id);
+        alert($("input#uni_id").val());
         if (localStorage.user_id === undefined) {
             window.location.href = './login.html';
         }
