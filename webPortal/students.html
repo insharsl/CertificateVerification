@@ -221,7 +221,7 @@
                     </div>
                     <div class="form-group">
                         <label>NIC</label>
-                        <input type="date" class="form-control my-2" id="nic" placeholder="NIC">
+                        <input type="text" class="form-control my-2" id="nic" placeholder="NIC">
                     </div>
                     <div class="form-group">
                         <label for="certificate">Certificate</label>
@@ -291,8 +291,9 @@
                         StudentInfo += "<td>" + data.responseJSON.data.files[i].email + "</td>";
                         StudentInfo += "<td>" + data.responseJSON.data.files[i].start_date + "</td>";
                         StudentInfo += "<td>" + data.responseJSON.data.files[i].end_date + "</td>";
-                        StudentInfo += "<td>" + data.responseJSON.data.files[i].certificate_hash + "</td>";
                         StudentInfo += "<td>" + data.responseJSON.data.files[i].nic + "</td>";
+                        StudentInfo += "<td>" + data.responseJSON.data.files[i].certificate_hash + "</td>";
+                        
 
                         StudentInfo += "</tr>"
                     }
