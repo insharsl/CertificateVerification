@@ -327,10 +327,11 @@ exports.createStudent = async (req, res, next) => {
         let email = req.body.email;
         let start_date = req.body.start_date;
         let end_date = req.body.end_date;
+        let nic = req.body.nic;
         let certificate = "certificates/" + req.file.filename;
 
-        let query = "insert into student (firstname, lastname, created_at , university_name, email, student_number,start_date, end_date, certificate, certificate_hash) " +
-            "values ('" + firstName + "','" + lastName + "','" + createdAt + "','" + universityName + "','"+email+"','" + studentNumber + "','" + start_date + "','" + end_date + "','" + certificate + "',";
+        let query = "insert into student (firstname, lastname, created_at , university_name, email, student_number,start_date, end_date, NIC, certificate, certificate_hash) " +
+            "values ('" + firstName + "','" + lastName + "','" + createdAt + "','" + universityName + "','"+email+"','" + studentNumber + "','" + start_date + "','" + end_date + "','" + nic + "','" + certificate + "',";
 
         let replacements = {
             stuNumber: studentNumber,

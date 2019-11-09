@@ -108,6 +108,7 @@
                                 <th>Student Email</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
+                                <th>NIC</th>
                                 <th>Certificate Hash</th>
                             </tr>
                             </thead>
@@ -219,6 +220,10 @@
                         <input type="date" class="form-control my-2" id="enddate" placeholder="End Date">
                     </div>
                     <div class="form-group">
+                        <label>NIC</label>
+                        <input type="date" class="form-control my-2" id="nic" placeholder="NIC">
+                    </div>
+                    <div class="form-group">
                         <label for="certificate">Certificate</label>
                         <input type="file" class="form-control" id="certificate">
                     </div>
@@ -287,6 +292,7 @@
                         StudentInfo += "<td>" + data.responseJSON.data.files[i].start_date + "</td>";
                         StudentInfo += "<td>" + data.responseJSON.data.files[i].end_date + "</td>";
                         StudentInfo += "<td>" + data.responseJSON.data.files[i].certificate_hash + "</td>";
+                        StudentInfo += "<td>" + data.responseJSON.data.files[i].nic + "</td>";
 
                         StudentInfo += "</tr>"
                     }
@@ -308,6 +314,7 @@
             formData.append("email", $("input#stdEmail").val());
             formData.append("start_date", $("input#startdate").val());
             formData.append("end_date", $("input#enddate").val());
+            formData.append("nic", $("input#nic").val());
             formData.append("certificate", $('input[type=file]')[0].files[0], $('input[type=file]')[0].files[0].name);
 
             $.ajax({
