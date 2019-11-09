@@ -47,6 +47,10 @@ func (t *SmartContract) Invoke(stub shim.ChaincodeStubInterface) peer.Response {
 		return t.queryCertificate(stub, args)
 	}
 
+	if function == "queryAllCertificates" {
+		return t.queryAllCertificates(stub)
+	}
+
 	fmt.Println("Invoke did not find specified function " + function)
 	return shim.Error("Invoke did not find specified function " + function)
 }
@@ -105,6 +109,19 @@ func (t *SmartContract) queryCertificate(APIstub shim.ChaincodeStubInterface, ar
 
 	certificateHash := args[0]
 	queryString := fmt.Sprintf("{\"selector\":{\"Type\":\"certificate\",\"certificateHash\":\"%s\"}}", certificateHash)
+
+	queryResults, err := getQueryResultForQueryString(APIstub, queryString)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	return shim.Success(queryResults)
+}
+
+// This is a smart contract to query all records
+func (t *SmartContract) queryAllCertificates(APIstub shim.ChaincodeStubInterface) peer.Response {
+
+	//certificateHash := args[0]
+	queryString := fmt.Sprintf("{\"selector\":{\"Type\":\"certificate\"}}")
 
 	queryResults, err := getQueryResultForQueryString(APIstub, queryString)
 	if err != nil {
